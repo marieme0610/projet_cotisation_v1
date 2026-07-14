@@ -1,8 +1,8 @@
 <?php
 
-$uri = parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH);
-$uri = trim($uri,'/');
-if($uri === ''){
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+// var_dump($uri); die;
+if($uri === '/'){
     $uri = '/login';
 }
 // var_dump($uri); die;
@@ -12,6 +12,10 @@ $routes =
     '/login' =>
     [
         'controller' => 'AuthController', 'action'=> 'login'
+    ],
+    '/register' =>
+    [
+        'controller' => 'AuthController', 'action'=> 'register'
     ],
     '/logout' =>
     [
@@ -29,12 +33,13 @@ $routes =
 
 
 
-$route = $routes[$uri];
+$route = $routes[$uri] ?? null;
 if($route){  
     $controller = $route['controller'];
-    var_dump($controller); die;
+    // var_dump($controller); die;
     $action = $route['action'];
-    require_once(dirname(__DIR__)."/controller".$controller.".php");
+    require_once(dirname(__DIR__)."/controllers/".$controller.".php");
+    $action();
 }
 
 

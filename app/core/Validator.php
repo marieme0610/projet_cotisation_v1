@@ -1,16 +1,11 @@
 <?php
 
-function isUnique(string $value,array $datas,array &$tabError):void{
-    foreach ($datas as  $data) {
-        if($data[$key] == $value){
-            $tabError[$key]["Pas unique"] = $smsError;
-        }
-    }
-}
 
-function isEmpty(string $value,array &$tabError):void{
+
+function isEmpty(string $value, array &$tabError, $key): void
+{
     if(empty($value)){
-        $tabError[$key]["Pas vide"] = $smsError;
+        $tabError[$key]["Pas vide"] = "Le champ $key est obligatoire";
     }
 }
 
