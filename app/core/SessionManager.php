@@ -17,7 +17,7 @@ function initializeData():void{
    }
 }
 
-function save(array $key,mixed $value){
+function save($key,mixed $value){
     $_SESSION[$key]=$value;
 }
 
